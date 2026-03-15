@@ -1,5 +1,6 @@
 package com.haven.model;
 
+import com.haven.enums.MessageStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,4 +26,7 @@ public class Message {
     private String content;
 
     private LocalDateTime timestamp;
+
+    @Enumerated(EnumType.STRING)
+    private MessageStatus status;
 }

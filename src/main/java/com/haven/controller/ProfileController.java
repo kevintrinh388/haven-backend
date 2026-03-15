@@ -33,6 +33,13 @@ public class ProfileController {
     @GetMapping
     public Profile getProfile() {
 
-        return profileService.getProfile(1L);
+        String email = (String) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
+
+        User user = userService.findByEmailOrThrow(email);
+
+        return profileService.getProfile(user.getId());
     }
 }
