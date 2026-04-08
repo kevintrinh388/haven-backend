@@ -15,9 +15,22 @@ public class DiscoveryService {
 
     private final ProfileRepository profileRepository;
 
-    public List<Profile> getDiscoveryFeed(Long userId, int page, int size) {
+    public List<Profile> getDiscoveryFeed(
+            Long userId,
+            Integer minAge,
+            Integer maxAge,
+            String gender,
+            int page,
+            int size
+    ) {
 
         Pageable pageable = PageRequest.of(page, size);
-        return profileRepository.findProfilesForDiscovery(userId, pageable);
+        return profileRepository.findProfilesForDiscovery(
+                userId,
+                minAge,
+                maxAge,
+                gender,
+                pageable
+        );
     }
 }

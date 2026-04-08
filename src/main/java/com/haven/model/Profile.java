@@ -20,6 +20,8 @@ public class Profile {
 
     private Integer age;
 
+    private String gender;
+
     private String location;
 
     private String interests;
@@ -27,4 +29,9 @@ public class Profile {
     @OneToOne
     @JoinColumn(name = "user_id", nullable = false, unique = true)
     private User user;
+
+    @Column(name = "photo_url")
+    private String photoUrl;
+
+    private boolean profileCompleted;
 }

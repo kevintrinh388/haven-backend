@@ -1,5 +1,6 @@
 package com.haven.controller;
 
+import com.haven.dto.SwipeRequest;
 import com.haven.service.SwipeService;
 import com.haven.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -15,8 +16,7 @@ public class SwipeController {
     private final UserService userService;
 
     @PostMapping
-    public String swipe(@RequestParam Long swipedUserId,
-                        @RequestParam boolean liked) {
+    public String swipe(@RequestBody SwipeRequest swipeRequest) {
 
         String email = (String) SecurityContextHolder
                 .getContext()
@@ -27,6 +27,6 @@ public class SwipeController {
                 .findByEmailOrThrow(email)
                 .getId();
 
-        return swipeService.swipe(currentUserId, swipedUserId, liked);
+        return swipeService.swipe(currentUserId, swipeRequest.swipedUserId(), swipeRequest.liked());
     }
 }
